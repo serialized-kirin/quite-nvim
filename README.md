@@ -1,5 +1,5 @@
 # Quite Nvim
-A <100 loc, 100% lua configuration for neovim packed with comments to help newcomers hit the ground running.
+A [<100 loc](./init-stripped.lua), 100% lua configuration for neovim packed with comments to help newcomers hit the ground running.
 
 # Installation
 ## Requirements
