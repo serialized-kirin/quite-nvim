@@ -9,7 +9,7 @@ A [<100 loc](./init-stripped.lua), 100% lua configuration for neovim packed with
 ## Macos/Linux
 1. Clone the repo from the terminal:
 ```bash
-mkdir ~/.config 
+test -e ~/.config || mkdir ~/.config 
 git clone https://github.com/serialized-kirin/quite-nvim/ ~/.config/nvim/
 ```
 2. Install the plugins through lazy
@@ -18,5 +18,5 @@ nvim --headless "+Lazy! sync" +qa
 ```
 3. Open the configuration and read! :)
 ```bash
-nvim ~/config/nvim/init.lua
+nvim ~/.config/nvim/init.lua
 ```
