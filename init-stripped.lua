@@ -1,3 +1,4 @@
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -12,7 +13,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.o.clipboard = 'unnamedplus'
+
 vim.o.number = true
+
 vim.g.mapleader = ' '
 
 require("lazy").setup({
@@ -45,16 +48,16 @@ require("lazy").setup({
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'williamboman/mason.nvim'
+      { 'williamboman/mason-lspconfig.nvim',
+        dependencies = {'williamboman/mason.nvim'} }
     },
     config = function()
-      require('mason').setup({})
       local configs = require('lspconfig')
-
-      if not require('mason-registry').is_installed('clangd') then
-        require('mason-registry').get_package('clangd'):install()
-      end
       configs.clangd.setup({})
+      require('mason').setup({})
+      require('mason-lspconfig').setup({
+        ensure_installed = {'clangd'}
+      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(ev)
@@ -80,3 +83,4 @@ require("lazy").setup({
     end
   },
 })
+
