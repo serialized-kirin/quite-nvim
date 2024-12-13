@@ -171,27 +171,33 @@ require("lazy").setup({
       -- this isn't *actually* a dependency
       -- of nvim-lspconfig, but it's useful
       -- if you want to download an LSP to
-      -- use.
-      'williamboman/mason.nvim'
+      -- use. (Also note you can provide a
+      -- package specfication in the 
+      -- dependencies array and not just
+      -- shortlinks! :)
+      { 'williamboman/mason-lspconfig.nvim',
+        dependencies = {'williamboman/mason.nvim'} }
     },
     config = function()
-      require('mason').setup({})
       local configs = require('lspconfig')
-
       -- setup the clangd server for C++
+      configs.clangd.setup({})
       -- Make sure you have the LSP
       -- present on your machine before
-      -- you go configuring it or you
+      -- you go setting  it up or you
       -- are gonna get some annoying
-      -- error messages. I'm using mason
-      -- on its own right now to ensure 
-      -- this, but there's also the 
-      -- mason-lspconfig plugin, which 
-      -- is more convenient.
-      if not require('mason-registry').is_installed('clangd') then
-        require('mason-registry').get_package('clangd'):install()
-      end
-      configs.clangd.setup({})
+      -- error messages. 
+      -- I'm using mason-lspconfig
+      -- right now to ensure this, but
+      -- there's no need to do that--
+      -- you can just install the
+      -- language server on your
+      -- system like any other normal
+      -- tool would be.
+      require('mason').setup({})
+      require('mason-lspconfig').setup({
+        ensure_installed = {'clangd'}
+      })
 
       -- vim.api.nvim_create_autocmd() is one of
       -- the ways you can run code on an event
