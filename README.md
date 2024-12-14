@@ -1,5 +1,6 @@
 # Quite Nvim
 ![Screenshot of me looking at the init.lua in Quite-Nvim](https://i.ibb.co/swNCpKk/Screen-Shot-2024-12-13-at-18-37-43.png)
+
 A [<100 loc](./init-stripped.lua), 100% lua configuration for neovim packed with comments to help newcomers hit the ground running.
 
 > If you are actually completely new to Vim/Neovim, then you should probably take the tutorial first. To do so just run
